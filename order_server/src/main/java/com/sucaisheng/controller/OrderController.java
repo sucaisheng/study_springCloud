@@ -24,10 +24,17 @@ public class OrderController {
 
     @RequestMapping(value = "/buy/{id}", method = RequestMethod.GET)
     public Product getProductById(@PathVariable Long id){
-        List<ServiceInstance> instances = discoveryClient.getInstances("service-product");
-        ServiceInstance serviceInstance = instances.get(0);
         Product product = null;
-        product = restTemplate.getForObject("http://" + serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/product/" + id, Product.class);
+        product = restTemplate.getForObject("http://service-product/product/" + id, Product.class);
         return product;
     }
+
+//    @RequestMapping(value = "/buy/{id}", method = RequestMethod.GET)
+//    public Product getProductById(@PathVariable Long id){
+//        List<ServiceInstance> instances = discoveryClient.getInstances("service-product");
+//        ServiceInstance serviceInstance = instances.get(0);
+//        Product product = null;
+//        product = restTemplate.getForObject("http://" + serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/product/" + id, Product.class);
+//        return product;
+//    }
 }
