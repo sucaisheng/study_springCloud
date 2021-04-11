@@ -2,3 +2,10 @@
 /eureka_server/target/
 /order_server/target/
 /product_server/target/
+eureka_server/src/test/
+order_server/order_server.iml
+order_server/src/main/java/com/sucaisheng/entity/
+order_server/src/test/
+product_server/product_server.iml
+product_server/src/main/java/com/sucaisheng/dao/
+product_server/src/test/
