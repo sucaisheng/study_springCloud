@@ -1,6 +1,8 @@
 package com.sucaisheng.controller;
 
 import com.sucaisheng.entity.Product;
+import com.sucaisheng.feign.ProductFeign;
+import jdk.nashorn.internal.ir.CallNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -22,10 +24,14 @@ public class OrderController {
     @Autowired
     private DiscoveryClient discoveryClient;
 
+    @Autowired
+    private ProductFeign productFeign;
+
     @RequestMapping(value = "/buy/{id}", method = RequestMethod.GET)
     public Product getProductById(@PathVariable Long id){
         Product product = null;
-        product = restTemplate.getForObject("http://service-product/product/" + id, Product.class);
+        //product = restTemplate.getForObject("http://service-product/product/" + id, Product.class);
+        product = productFeign.findById(id);
         return product;
     }
 
